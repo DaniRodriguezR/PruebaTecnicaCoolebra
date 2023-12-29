@@ -31,7 +31,7 @@ const App = () => {
   };
 
   const procesarFiltrado = () => {
-    // Aplicar el filtro cuando se hace clic en "Procesar Filtrado"
+    // Aplicar el filtro cuando se hace clic en Buscar
     filtrarProductos();
   };
 
@@ -43,7 +43,7 @@ const App = () => {
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
       />
-      <button onClick={procesarFiltrado}>Procesar Filtrado</button>
+      <button onClick={procesarFiltrado}>Buscar</button>
       <button onClick={limpiarFiltro}>Limpiar Filtro</button>
       {productos.map((producto, index) => (
         <Producto

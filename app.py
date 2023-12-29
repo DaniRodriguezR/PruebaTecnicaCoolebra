@@ -4,8 +4,7 @@ import sqlite3 as db
 
 app = Flask(__name__)
 
-# Habilitamos CORS para poder solicitar recursos
-
+# Habilitamos CORS para poder pasar valores del backend al frontend
 CORS(app)
 
 def consulta():
