@@ -5,7 +5,6 @@ const Producto = ({ nombre, datosQuery, marketsDiferentes, rangoPrecios, ultimoM
         <h2>Nombre del Producto: {nombre}</h2>
         <p>Rango de Precios: {rangoPrecios}</p>
         <p>Cantidad de Markets Diferentes: {marketsDiferentes}</p>
-        <p>Último Menor Precio Activo: {ultimoMenorPrecioActivo}</p>
         <div>
             <h3>Datos de la Query:</h3>
             <ul>

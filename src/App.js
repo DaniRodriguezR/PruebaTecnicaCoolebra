@@ -20,7 +20,7 @@ const App = () => {
   const filtrarProductos = () => {
     // Aplicar el filtrado a la copia original de productos
     const filtrados = productosOriginales.filter(producto =>
-      producto["Nombre Producto"].toLowerCase().includes(filtro.toLowerCase())
+      producto["nombre_de_producto"].toLowerCase().includes(filtro.toLowerCase())
     );
     setProductos(filtrados);
   };
@@ -48,11 +48,11 @@ const App = () => {
       {productos.map((producto, index) => (
         <Producto
           key={index}
-          nombre={producto["Nombre Producto"]}
-          datosQuery={producto["Datos Query"]}
-          marketsDiferentes={producto["Cantidad de Markets Diferentes"]}
-          rangoPrecios={producto["Rango de Precios"]}
-          ultimoMenorPrecioActivo={producto["Ultimo Menor Precio Activo"]}
+          nombre={producto["nombre_de_producto"]}
+          datosQuery={producto["datos_query"]}
+          marketsDiferentes={producto["cantidad_markets_diferentes"]}
+          rangoPrecios={producto["rango_precios"]}
+          ultimoMenorPrecioActivo={producto["ultimo_menor_precio_activo"]}
         />
       ))}
     </div>

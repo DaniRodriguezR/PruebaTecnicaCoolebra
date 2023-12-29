@@ -52,36 +52,34 @@ def obtener_datos_agrupados():
         # Actualizar el diccionario con datos del producto
         if sku not in resultados_agrupados:
             resultados_agrupados[sku] = {
-                "Nombre del producto": nombre_producto,
-                "Datos Query":[],
-                "Markets": set(),
-                "Rango de precios": {"menor": precio_descto, "mayor": precio_normal},
-                "Ultimo Menor Precio Activo": precio_descto,
+                "nombre_de_producto": nombre_producto,
+                "datos_query":[],
+                "markets": set(),
+                "rango_precios": {"menor": precio_descto, "mayor": precio_normal}
             }
         
         # Agregar los datos de la query al diccionario
-        resultados_agrupados[sku]["Datos Query"].append(f"SKU: {sku}, Ean:{ean}, Precio: {precio_descto}, Mercado: {nombre_mercado}")
+        resultados_agrupados[sku]["datos_query"].append(f"SKU: {sku}, Ean:{ean}, Precio: {precio_descto}, Mercado: {nombre_mercado}")
 
         # Actualizar la cantidad de markets diferentes
-        resultados_agrupados[sku]["Markets"].add(nombre_mercado)
+        resultados_agrupados[sku]["markets"].add(nombre_mercado)
 
         # Actualizar el rango de precios
-        if precio_normal > resultados_agrupados[sku]["Rango de precios"]["mayor"]:
-            resultados_agrupados[sku]["Rango de precios"]["mayor"] = precio_normal
-        elif precio_descto < resultados_agrupados[sku]["Rango de precios"]["menor"]:
-            resultados_agrupados[sku]["Rango de precios"]["menor"] = precio_descto
+        if precio_normal > resultados_agrupados[sku]["rango_precios"]["mayor"]:
+            resultados_agrupados[sku]["rango_precios"]["mayor"] = precio_normal
+        elif precio_descto < resultados_agrupados[sku]["rango_precios"]["menor"]:
+            resultados_agrupados[sku]["rango_precios"]["menor"] = precio_descto
 
     # Calcular la cantidad de markets diferentes
     for sku, datos_producto in resultados_agrupados.items():
-        datos_producto["Cantidad Markets Diferentes"] = len(datos_producto["Markets"])
+        datos_producto["cantidad_markets_diferentes"] = len(datos_producto["markets"])
 
     # Convertir el diccionario a la lista de diccionarios solicitada
     lista_resultados_agrupados = [{
-        "Nombre Producto": datos["Nombre del producto"],
-        "Datos Query": datos["Datos Query"],
-        "Cantidad de Markets Diferentes": datos["Cantidad Markets Diferentes"],
-        "Rango de Precios": f"{datos['Rango de precios']['mayor']} - {datos['Rango de precios']['menor']}",
-        "Ultimo Menor Precio Activo": datos["Rango de precios"]["menor"]
+        "nombre_de_producto": datos["nombre_de_producto"],
+        "datos_query": datos["datos_query"],
+        "cantidad_markets_diferentes": datos["cantidad_markets_diferentes"],
+        "rango_precios": f"{datos['rango_precios']['mayor']} - {datos['rango_precios']['menor']}"
     } for datos in resultados_agrupados.values()]
 
     return jsonify(lista_resultados_agrupados)
